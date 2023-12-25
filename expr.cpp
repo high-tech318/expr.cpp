@@ -22,8 +22,8 @@ float calculate(vector<string> expression) {
     int expression_size = expression.size();
 
     for (int i = 0; i<expression_size; i++){
-        string current = expression.back();
-        expression.pop_back();
+        string current = expression.front();
+        expression.erase(expression.begin());
         if (current == "+") {
         float A = stack.back(); stack.pop_back();
         float B = stack.back(); stack.pop_back();
