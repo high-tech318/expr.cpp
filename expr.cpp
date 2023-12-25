@@ -12,47 +12,45 @@ int main(int argc, char* args) {
     my_vector.push_back("2");
     my_vector.push_back("/");
     my_vector.push_back("-");
-    cout << "Hello";
+    cout << "Hello" << endl;
     cout << to_string(calculate(my_vector));
     return 0;
 }
 
 float calculate(vector<string> expression) {
     vector<float> stack;
-    string current = expression.back();
-    expression.pop_back();
-    int expression_size = sizeof(expression)/sizeof(string);
-    cout << to_string(expression_size)<<endl;
-    cout << sizeof(expression)<<endl;
-    cout << sizeof(string)<<endl;
+    int expression_size = expression.size();
+
     for (int i = 0; i<expression_size; i++){
-    if (current == "+") {
+        string current = expression.back();
+        expression.pop_back();
+        if (current == "+") {
         float A = stack.back(); stack.pop_back();
         float B = stack.back(); stack.pop_back();
         stack.push_back(A+B);
-    }
-    else if (current == "*")
-    {
+        }
+        else if (current == "*")
+        {
         float A = stack.back(); stack.pop_back();
         float B = stack.back(); stack.pop_back();
         stack.push_back(A*B);
-    }
-    else if (current == "-")
-    {
+        }
+        else if (current == "-")
+        {
         float A = stack.back(); stack.pop_back();
         float B = stack.back(); stack.pop_back();
         stack.push_back(B-A);
-    }
-    else if (current == "/")
-    {
+        }
+        else if (current == "/")
+        {
         float A = stack.back(); stack.pop_back();
         float B = stack.back(); stack.pop_back();
         stack.push_back(B/A);
-    }
-    else {
+        }
+        else {
         stack.push_back(stof(current));
-    }
+        }
     };
-    float out = stack.back();
-    return out;
+
+    return stack.back();
     }
